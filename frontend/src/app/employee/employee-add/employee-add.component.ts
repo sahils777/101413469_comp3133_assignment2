@@ -29,7 +29,9 @@ export class EmployeeAddComponent {
   constructor(private employeeService: EmployeeService, private router: Router) {}
 
   onSubmit() {
-    // Validate
+    this.errorMessage = '';
+
+    // Frontend validation
     if (
       !this.employee.first_name ||
       !this.employee.last_name ||
@@ -43,12 +45,26 @@ export class EmployeeAddComponent {
       return;
     }
 
-    // Submit
+    if (this.employee.salary < 1000) {
+      this.errorMessage = 'Salary must be at least $1000';
+      return;
+    }
+
+    // Attempt to add the employee
     this.employeeService.addEmployee({ ...this.employee, id: '' }).subscribe({
       next: () => this.router.navigate(['/employees']),
       error: (error) => {
-        console.error('Error adding employee:', error);
-        this.errorMessage = error.message || 'Failed to add employee';
+        console.error('❌ Error adding employee:', error);
+
+        // Handle backend email conflict (assuming your backend returns a message for it)
+        if (
+          error?.message?.includes('duplicate') ||
+          error?.message?.toLowerCase().includes('email')
+        ) {
+          this.errorMessage = 'Email is already registered';
+        } else {
+          this.errorMessage = error.message || 'Failed to add employee';
+        }
       }
     });
   }
