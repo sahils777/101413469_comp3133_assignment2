@@ -1,0 +1,15 @@
+<div class="top-right-buttons">
+    <button (click)="goToLogin()">Login</button>
+    <button (click)="goToSignup()">Sign Up</button>
+  </div>
+
+  <div class="signup-container">
+    <h2>Create Account</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <input formControlName="firstName" placeholder="First Name" />
+      <input formControlName="lastName" placeholder="Last Name" />
+      <input formControlName="email" type="email" placeholder="Email" />
+      <input formControlName="password" type="password" placeholder="Password" />
+      <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+  </div>

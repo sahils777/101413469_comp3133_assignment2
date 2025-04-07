@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>
+    {{ data?.employee ? 'Edit Employee' : 'Add New Employee' }}
+  </h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+        </mat-form-field>
+      </div>
+
+      <!-- Add other form fields following same pattern -->
+
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          {{ data?.employee ? 'Update' : 'Create' }}
+        </button>
+      </mat-dialog-actions>
+    </form>
+  </mat-dialog-content>
+
+  <div class="file-upload">
+    <input
+      type="file"
+      id="profilePicture"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      style="display: none;"
+    >
+    <label for="profilePicture" mat-raised-button>
+      <mat-icon>upload</mat-icon> Upload Photo
+    </label>
+
+    <img
+      *ngIf="form.value.profilePicture"
+      [src]="form.value.profilePicture"
+      class="preview-image"
+    >
+  </div>
