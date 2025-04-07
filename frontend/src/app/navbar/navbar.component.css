@@ -1,0 +1,62 @@
+/* Navbar Container - Modern Dark Theme */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #1a1a1a; /* Darker background */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+/* Title - Sleek Typography */
+.nav-title p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #4f46e5, #10b981); /* Gradient text */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Right-aligned items - Modern Spacing & Hover Effects */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased spacing */
+}
+
+/* Links & Buttons - Interactive Design */
+.nav-links a,
+.nav-actions a,
+.nav-actions button {
+  color: #e5e7eb;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects - Subtle Background Highlight */
+.nav-actions button:hover,
+.nav-links a:hover,
+.nav-actions a:hover {
+  background: rgba(255, 255, 255, 0.1); /* Light hover state */
+  text-decoration: none; /* Remove underline */
+  transform: translateY(-1px); /* Slight lift */
+}
+
+/* Active Link/Button - Visual Feedback */
+.nav-links a.active,
+.nav-actions a.active {
+  background: rgba(79, 70, 229, 0.2); /* Accent color highlight */
+  color: #a5b4fc;
+}

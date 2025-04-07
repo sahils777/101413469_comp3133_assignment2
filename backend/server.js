@@ -8,14 +8,13 @@ const authenticate = require('./middleware/auth');
 
 const app = express();
 
-// ✅ Middleware order is important
-// app.use(cors({
-//     origin: [
-//       'http://localhost:4200',
-//       'https://assignment2-2jkbk3t0m-neerajbudhiraja1807s-projects.vercel.app'
-//     ],
-//     credentials: true
-//   }));
+//✅ Middleware order is important
+app.use(cors({
+    origin: [
+      'http://localhost:4200'
+    ],
+    credentials: true
+  }));
 
 app.use(express.json()); // ✅ correctly applied once globally
 
@@ -50,5 +49,5 @@ app.get('/', (req, res) => {
     res.send('🚀 Employee Management Backend Running!');
 });
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
