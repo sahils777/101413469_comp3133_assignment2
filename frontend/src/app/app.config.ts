@@ -41,7 +41,7 @@ export const appConfig: ApplicationConfig = {
         });
 
         const http = httpLink.create({
-          uri: environment.graphqlUri
+          uri: environment.graphqlEndpoint
         });
 
         return {
