@@ -1,59 +1,192 @@
-# Frontend
+# 🧑‍💼 Employee Management System
+**COMP3133 Assignment 2 – Full Stack Web Application**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+---
 
-## Development server
+## 🔗 Live Demo Links
 
-To start a local development server, run:
+- 🔹 **Frontend (Angular App):** [https://101413469-comp3133-assignment2.vercel.app](https://101413469-comp3133-assignment2.vercel.app)
+- 🔹 **Backend (GraphQL API):** [https://one01413469-comp3133-assignment2.onrender.com/graphql](https://one01413469-comp3133-assignment2.onrender.com/graphql)
+
+---
+
+## 📁 Project Structure
+
+```
+101413469_comp3133_assignment2/
+├── backend/       → Node.js + GraphQL + MongoDB
+├── frontend/      → Angular 16 + Apollo Client
+```
+
+---
+
+## ✅ Features
+
+- 🔒 **User Authentication** (Signup / Login) with JWT
+- 📄 **Add, View, Edit, Delete Employees**
+- 🔍 **Search by Designation / Department**
+- 🖼️ Upload employee profile image (URL-based)
+- 🚀 **GraphQL API** with Queries & Mutations
+- 🌐 **MongoDB Atlas** as cloud database
+- 🖥️ **Deployed with Vercel (Frontend)** and **Render (Backend)**
+- 💡 **Responsive and modern UI** with Angular Standalone Components
+- 🧠 **Form validation** with error messages shown in the UI
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- Angular 16
+- Apollo Angular
+- RxJS
+- Angular Forms
+- Angular Material (optional)
+
+### Backend
+- Node.js
+- Express.js
+- GraphQL
+- Mongoose
+- JWT (Authentication)
+
+### Database
+- MongoDB Atlas
+
+### Deployment
+- Vercel (Frontend)
+- Render (Backend)
+
+---
+
+## 🧑‍💻 Local Development Setup
+
+### 🔹 Prerequisites
+
+- Node.js (LTS recommended)
+- Angular CLI (`npm install -g @angular/cli`)
+- MongoDB Atlas or local MongoDB
+- Git
+
+---
+
+### 🔧 Backend Setup (Node.js + GraphQL)
+
+```bash
+cd backend/
+npm install
+```
+
+🔐 Create a `.env` file in the `backend` directory:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+▶️ Start the backend server:
+
+```bash
+npm start
+```
+
+> 🚀 Server runs at: [http://localhost:5000/graphql](http://localhost:5000/graphql)
+
+---
+
+### 🔧 Frontend Setup (Angular)
+
+```bash
+cd frontend/
+npm install
+```
+
+Ensure the correct backend URL is used in:
+
+#### 📁 `src/environments/environment.ts` (Development)
+```ts
+export const environment = {
+  production: false,
+  graphqlEndpoint: 'http://localhost:5000/graphql'
+};
+```
+
+#### 📁 `src/environments/environment.prod.ts` (Production)
+```ts
+export const environment = {
+  production: true,
+  graphqlEndpoint: 'https://one01413469-comp3133-assignment2.onrender.com/graphql'
+};
+```
+
+▶️ Run the Angular app:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+> 🌐 App runs on: [http://localhost:4200](http://localhost:4200)
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🧪 How to Use
 
-```bash
-ng generate component component-name
+1. 🔐 **Login / Signup**
+   - Create a new user account or log in.
+2. 👥 **Manage Employees**
+   - View all employees.
+   - Add a new employee.
+   - Edit or delete existing records.
+3. 🔍 **Search**
+   - Filter employees by designation or department.
+4. 🛡️ **Validation**
+   - Duplicate email shows error: "This email is already registered."
+   - Minimum salary validation: "Salary must be at least $1000."
+   - All error messages appear in the UI.
+
+---
+
+## 🌐 Deployment Notes
+
+### ✅ Backend (Render)
+- Hosted at: [https://one01413469-comp3133-assignment2.onrender.com/graphql](https://one01413469-comp3133-assignment2.onrender.com/graphql)
+
+### ✅ Frontend (Vercel)
+- Hosted at: [https://101413469-comp3133-assignment2.vercel.app](https://101413469-comp3133-assignment2.vercel.app)
+
+> ⚠️ Ensure CORS in `server.js` allows the Vercel URL:
+```js
+app.use(cors({
+  origin: [
+    'http://localhost:4200',
+    'https://101413469-comp3133-assignment2.vercel.app'
+  ],
+  credentials: true
+}));
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🧑‍🎓 Student Information
 
-## Building
+- 👤 **Name:** Mohmadsahil Shaikh
+- 🆔 **Student ID:** 101413469
+- 📚 **Course:** COMP3133 – Full Stack Development
+- 📅 **Semester:** Winter 2025
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 📸 Optional Enhancements
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- [ ] Show user name after login
+- [ ] Add pagination for employee list
+- [ ] Upload profile image (not just URL)
+- [ ] Add dark mode toggle
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📄 License
 
-```bash
-ng test
-```
+This project is submitted for academic purposes as part of COMP3133 – Full Stack Development.
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
