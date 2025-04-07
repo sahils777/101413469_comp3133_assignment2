@@ -10,10 +10,9 @@ const app = express();
 
 //✅ Middleware order is important
 app.use(cors({
-    origin: [
-      'http://localhost:4200',
-      'https://101413469-comp3133-assignment2.vercel.app'
-    ],
+    origin: (origin, callback) => {
+      callback(null, true); // Allow all origins
+    },
     credentials: true
   }));
 
