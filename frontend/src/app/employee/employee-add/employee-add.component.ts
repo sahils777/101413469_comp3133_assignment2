@@ -25,11 +25,13 @@ export class EmployeeAddComponent {
   };
 
   errorMessage: string = '';
+  isSubmitting = false; // Add loading state
 
   constructor(private employeeService: EmployeeService, private router: Router) {}
 
   onSubmit() {
     this.errorMessage = '';
+    this.isSubmitting = true;
 
     if (
       !this.employee.first_name ||
@@ -41,30 +43,30 @@ export class EmployeeAddComponent {
       !this.employee.department
     ) {
       this.errorMessage = 'Please fill all required fields';
+      this.isSubmitting = false;
       return;
     }
 
     if (this.employee.salary < 1000) {
       this.errorMessage = 'Salary must be at least $1000';
+      this.isSubmitting = false;
       return;
     }
 
-    this.employeeService.addEmployee({ ...this.employee, id: '' }).subscribe({
-      next: () => this.router.navigate(['/employees']),
-      error: (error) => {
-        console.error('❌ Error adding employee:', error);
+     this.employeeService.addEmployee({ ...this.employee, id: '' }).subscribe({
+    next: () => this.router.navigate(['/employees']),
+    error: (error) => {
+      console.error('Raw error:', error); // Check this in console
 
-        const message =
-          error?.error?.errors?.[0]?.message ||
-          error?.message || 'Failed to add employee';
-        if (message.includes('E11000') || message.toLowerCase().includes('duplicate key')) {
-          this.errorMessage = 'This email is already registered. Please use a different one.';
-        } else if (message.toLowerCase().includes('salary')) {
-          this.errorMessage = 'Salary must be at least $1000.';
-        } else {
-          this.errorMessage = message;
-        }
+      // Simple error extraction
+      if (error.graphQLErrors?.[0]?.message.includes('E11000')) {
+        this.errorMessage = 'This email is already taken!';
+      } else {
+        this.errorMessage = error.message || 'Failed to add employee';
       }
+
+      this.isSubmitting = false;
+    }
     });
   }
 }

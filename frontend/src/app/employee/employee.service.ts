@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import {
-  GET_EMPLOYEES_QUERY,
-  GET_EMPLOYEE_QUERY,
-  SEARCH_EMPLOYEES_QUERY,
-} from '../shared/graphql/queries';
-import {
-  ADD_EMPLOYEE_MUTATION,
-  UPDATE_EMPLOYEE_MUTATION,
-  DELETE_EMPLOYEE_MUTATION,
-} from '../shared/graphql/mutations';
+import {GET_EMPLOYEES_QUERY, GET_EMPLOYEE_QUERY, SEARCH_EMPLOYEES_QUERY} from '../shared/graphql/queries';
+import {ADD_EMPLOYEE_MUTATION, UPDATE_EMPLOYEE_MUTATION, DELETE_EMPLOYEE_MUTATION} from '../shared/graphql/mutations';
 import { Employee } from '../shared/models/employee.model';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -81,12 +73,12 @@ export class EmployeeService {
       })
       .pipe(
         map((result: any) => result.data.addEmployee),
-        catchError((error) =>
-          throwError(() => new Error('Failed to add employee'))
-        )
+        catchError((error) => {
+          const graphQLError = error?.graphQLErrors?.[0]?.message || error?.message || 'Unknown error';
+          return throwError(() => new Error(graphQLError));
+        })
       );
   }
-
 
   updateEmployee(employee: Employee) {
     return this.apollo
