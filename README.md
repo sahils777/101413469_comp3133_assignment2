@@ -177,15 +177,6 @@ app.use(cors({
 
 ---
 
-## 📸 Optional Enhancements
-
-- [ ] Show user name after login
-- [ ] Add pagination for employee list
-- [ ] Upload profile image (not just URL)
-- [ ] Add dark mode toggle
-
----
-
 ## 📄 License
 
 This project is submitted for academic purposes as part of COMP3133 – Full Stack Development.
