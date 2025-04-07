@@ -9,7 +9,7 @@ import { InMemoryCache } from '@apollo/client/core';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { onError } from '@apollo/client/link/error';
 import { setContext } from '@apollo/client/link/context';
-import { environment } from '../app/environments/environment';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
