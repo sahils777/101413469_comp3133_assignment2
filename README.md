@@ -155,17 +155,6 @@ ng serve
 ### ✅ Frontend (Vercel)
 - Hosted at: [https://101413469-comp3133-assignment2.vercel.app](https://101413469-comp3133-assignment2.vercel.app)
 
-> ⚠️ Ensure CORS in `server.js` allows the Vercel URL:
-```js
-app.use(cors({
-  origin: [
-    'http://localhost:4200',
-    'https://101413469-comp3133-assignment2.vercel.app'
-  ],
-  credentials: true
-}));
-```
-
 ---
 
 ## 🧑‍🎓 Student Information
