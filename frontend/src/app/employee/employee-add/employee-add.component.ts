@@ -53,17 +53,18 @@ export class EmployeeAddComponent {
       next: () => this.router.navigate(['/employees']),
       error: (error) => {
         console.error('❌ Error adding employee:', error);
-        const graphqlError = error?.graphQLErrors?.[0]?.message || error?.message;
 
-        if (graphqlError?.toLowerCase().includes('duplicate key') || graphqlError?.includes('E11000')) {
+        const message =
+          error?.error?.errors?.[0]?.message ||
+          error?.message || 'Failed to add employee';
+        if (message.includes('E11000') || message.toLowerCase().includes('duplicate key')) {
           this.errorMessage = 'This email is already registered. Please use a different one.';
-        } else if (graphqlError?.toLowerCase().includes('salary')) {
-          this.errorMessage = 'Salary must be at least $1000';
+        } else if (message.toLowerCase().includes('salary')) {
+          this.errorMessage = 'Salary must be at least $1000.';
         } else {
-          this.errorMessage = graphqlError || 'Failed to add employee';
+          this.errorMessage = message;
         }
       }
     });
   }
-
 }
