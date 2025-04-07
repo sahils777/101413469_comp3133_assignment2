@@ -147,7 +147,6 @@ const {
           gender: { type: new GraphQLNonNull(GraphQLString) },
           designation: { type: new GraphQLNonNull(GraphQLString) },
           salary: { type: new GraphQLNonNull(GraphQLFloat) },
-          date_of_joining: { type: new GraphQLNonNull(GraphQLString) },
           department: { type: new GraphQLNonNull(GraphQLString) },
           employee_photo: { type: GraphQLString }
         },

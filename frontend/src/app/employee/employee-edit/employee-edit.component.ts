@@ -27,7 +27,6 @@ export class EmployeeEditComponent implements OnInit {
     if (id) {
       this.employeeService.getEmployee(id).subscribe({
         next: (employee: Employee) => {
-          // Clone to remove __typename and make it editable
           this.employee = { ...employee };
         },
         error: (error) => {
@@ -39,10 +38,20 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('🔁 Updating employee:', this.employee);
+    if (this.employee && this.employee.id) {
+      const updatedPayload = {
+        id: this.employee.id,
+        first_name: this.employee.first_name,
+        last_name: this.employee.last_name,
+        email: this.employee.email,
+        gender: this.employee.gender,
+        designation: this.employee.designation,
+        salary: this.employee.salary,
+        department: this.employee.department,
+        employee_photo: this.employee.employee_photo || ''
+      };
 
-    if (this.employee) {
-      this.employeeService.updateEmployee(this.employee).subscribe({
+      this.employeeService.updateEmployee(updatedPayload as any).subscribe({
         next: () => {
           this.router.navigate(['/employees']);
         },

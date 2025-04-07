@@ -1,23 +1,21 @@
 <div class="form-container" *ngIf="employee; else loading">
-    <h2>Edit Employee</h2>
+  <h2>Edit Employee</h2>
 
-    <form (ngSubmit)="onSubmit()">
-      <input type="text" [(ngModel)]="employee.first_name" name="first_name" required placeholder="First Name" />
-      <input type="text" [(ngModel)]="employee.last_name" name="last_name" required placeholder="Last Name" />
-      <input type="email" [(ngModel)]="employee.email" name="email" required placeholder="Email" />
-      <input type="text" [(ngModel)]="employee.gender" name="gender" required placeholder="Gender" />
-      <input type="text" [(ngModel)]="employee.designation" name="designation" required placeholder="Designation" />
-      <input type="number" [(ngModel)]="employee.salary" name="salary" required placeholder="Salary" />
-      <input type="date" [(ngModel)]="employee.date_of_joining" name="date_of_joining" required />
-      <input type="text" [(ngModel)]="employee.department" name="department" required placeholder="Department" />
-      <input type="text" [(ngModel)]="employee.employee_photo" name="employee_photo" placeholder="Photo URL" />
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="employee.first_name" name="first_name" required placeholder="First Name" />
+    <input type="text" [(ngModel)]="employee.last_name" name="last_name" required placeholder="Last Name" />
+    <input type="email" [(ngModel)]="employee.email" name="email" required placeholder="Email" />
+    <input type="text" [(ngModel)]="employee.gender" name="gender" required placeholder="Gender" />
+    <input type="text" [(ngModel)]="employee.designation" name="designation" required placeholder="Designation" />
+    <input type="number" [(ngModel)]="employee.salary" name="salary" required placeholder="Salary" />
+    <input type="text" [(ngModel)]="employee.department" name="department" required placeholder="Department" />
 
-      <button type="submit">Update Employee</button>
+    <button type="submit">Update Employee</button>
 
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    </form>
-  </div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</div>
 
-  <ng-template #loading>
-    <p>Loading employee data...</p>
-  </ng-template>
+<ng-template #loading>
+  <p>Loading employee data...</p>
+</ng-template>

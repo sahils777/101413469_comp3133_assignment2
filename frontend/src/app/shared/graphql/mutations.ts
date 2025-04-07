@@ -20,7 +20,6 @@ export const ADD_EMPLOYEE_MUTATION = gql`
     $gender: String!
     $designation: String!
     $salary: Float!
-    $date_of_joining: String!
     $department: String!
     $employee_photo: String
   ) {
@@ -31,7 +30,6 @@ export const ADD_EMPLOYEE_MUTATION = gql`
       gender: $gender
       designation: $designation
       salary: $salary
-      date_of_joining: $date_of_joining
       department: $department
       employee_photo: $employee_photo
     ) {
@@ -42,24 +40,23 @@ export const ADD_EMPLOYEE_MUTATION = gql`
       gender
       designation
       salary
-      date_of_joining
       department
       employee_photo
     }
   }
 `;
 
+
 export const UPDATE_EMPLOYEE_MUTATION = gql`
   mutation UpdateEmployee(
     $id: ID!
-    $first_name: String!
-    $last_name: String!
-    $email: String!
-    $gender: String!
-    $designation: String!
-    $salary: Float!
-    $date_of_joining: String!
-    $department: String!
+    $first_name: String
+    $last_name: String
+    $email: String
+    $gender: String
+    $designation: String
+    $salary: Float
+    $department: String
     $employee_photo: String
   ) {
     updateEmployee(
@@ -70,7 +67,6 @@ export const UPDATE_EMPLOYEE_MUTATION = gql`
       gender: $gender
       designation: $designation
       salary: $salary
-      date_of_joining: $date_of_joining
       department: $department
       employee_photo: $employee_photo
     ) {
@@ -81,12 +77,12 @@ export const UPDATE_EMPLOYEE_MUTATION = gql`
       gender
       designation
       salary
-      date_of_joining
       department
       employee_photo
     }
   }
 `;
+
 
 export const DELETE_EMPLOYEE_MUTATION = gql`
   mutation DeleteEmployee($id: ID!) {

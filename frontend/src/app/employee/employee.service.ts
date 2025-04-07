@@ -68,7 +68,16 @@ export class EmployeeService {
     return this.apollo
       .mutate({
         mutation: ADD_EMPLOYEE_MUTATION,
-        variables: { ...employee },
+        variables: {
+          first_name: employee.first_name,
+          last_name: employee.last_name,
+          email: employee.email,
+          gender: employee.gender,
+          designation: employee.designation,
+          salary: employee.salary,
+          department: employee.department,
+          employee_photo: employee.employee_photo || ''
+        },
       })
       .pipe(
         map((result: any) => result.data.addEmployee),
@@ -78,11 +87,22 @@ export class EmployeeService {
       );
   }
 
+
   updateEmployee(employee: Employee) {
     return this.apollo
       .mutate({
         mutation: UPDATE_EMPLOYEE_MUTATION,
-        variables: { ...employee }, // must include id
+        variables: {
+          id: employee.id,
+          first_name: employee.first_name,
+          last_name: employee.last_name,
+          email: employee.email,
+          gender: employee.gender,
+          designation: employee.designation,
+          salary: employee.salary,
+          department: employee.department,
+          employee_photo: employee.employee_photo || ''
+        }
       })
       .pipe(
         map((result: any) => result.data.updateEmployee),

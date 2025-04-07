@@ -20,7 +20,6 @@ export class EmployeeAddComponent {
     gender: '',
     designation: '',
     salary: 0,
-    date_of_joining: '',
     department: '',
     employee_photo: ''
   };
@@ -38,7 +37,6 @@ export class EmployeeAddComponent {
       !this.employee.gender ||
       !this.employee.designation ||
       !this.employee.salary ||
-      !this.employee.date_of_joining ||
       !this.employee.department
     ) {
       this.errorMessage = 'Please fill all required fields';
