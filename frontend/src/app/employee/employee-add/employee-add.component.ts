@@ -31,7 +31,6 @@ export class EmployeeAddComponent {
   onSubmit() {
     this.errorMessage = '';
 
-    // Frontend validation
     if (
       !this.employee.first_name ||
       !this.employee.last_name ||
@@ -50,18 +49,14 @@ export class EmployeeAddComponent {
       return;
     }
 
-    // Submit to backend
     this.employeeService.addEmployee({ ...this.employee, id: '' }).subscribe({
       next: () => this.router.navigate(['/employees']),
       error: (error) => {
         console.error('❌ Error adding employee:', error);
-
-        // Extract GraphQL error message (if any)
         const graphqlError = error?.graphQLErrors?.[0]?.message || error?.message;
 
-        // Detect specific errors
-        if (graphqlError?.toLowerCase().includes('email')) {
-          this.errorMessage = 'Email already exists. Please use a different email.';
+        if (graphqlError?.toLowerCase().includes('duplicate key') || graphqlError?.includes('E11000')) {
+          this.errorMessage = 'This email is already registered. Please use a different one.';
         } else if (graphqlError?.toLowerCase().includes('salary')) {
           this.errorMessage = 'Salary must be at least $1000';
         } else {
@@ -70,4 +65,5 @@ export class EmployeeAddComponent {
       }
     });
   }
+
 }
