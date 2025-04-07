@@ -50,20 +50,22 @@ export class EmployeeAddComponent {
       return;
     }
 
-    // Attempt to add the employee
+    // Submit to backend
     this.employeeService.addEmployee({ ...this.employee, id: '' }).subscribe({
       next: () => this.router.navigate(['/employees']),
       error: (error) => {
         console.error('❌ Error adding employee:', error);
 
-        // Handle backend email conflict (assuming your backend returns a message for it)
-        if (
-          error?.message?.includes('duplicate') ||
-          error?.message?.toLowerCase().includes('email')
-        ) {
-          this.errorMessage = 'Email is already registered';
+        // Extract GraphQL error message (if any)
+        const graphqlError = error?.graphQLErrors?.[0]?.message || error?.message;
+
+        // Detect specific errors
+        if (graphqlError?.toLowerCase().includes('email')) {
+          this.errorMessage = 'Email already exists. Please use a different email.';
+        } else if (graphqlError?.toLowerCase().includes('salary')) {
+          this.errorMessage = 'Salary must be at least $1000';
         } else {
-          this.errorMessage = error.message || 'Failed to add employee';
+          this.errorMessage = graphqlError || 'Failed to add employee';
         }
       }
     });
